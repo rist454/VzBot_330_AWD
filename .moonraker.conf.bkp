@@ -15,6 +15,7 @@ cors_domains =
 	http://*.lan
 trusted_clients = 
 	100.92.228.104
+	100.70.101.106
 	100.73.116.95
 	100.113.55.121
 	10.0.0.0/8
@@ -133,19 +134,4 @@ managed_services = mobileraker
 env = /home/rpi/mobileraker-env/bin/python
 requirements = scripts/mobileraker-requirements.txt
 install_script = scripts/install.sh
-
-[spoolman]
-server = http://192.168.68.110:7912
-
-[update_manager Spoolman]
-type = zip
-channel = stable
-repo = Donkie/Spoolman
-path = /home/rpi/Spoolman
-virtualenv = .venv
-requirements = requirements.txt
-persistent_files = 
-	.venv
-	.env
-managed_services = Spoolman
 
