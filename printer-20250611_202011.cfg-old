@@ -1,14 +1,15 @@
 ###MANTA 8P v2.0 BOARD#
 
 [include mainsail.cfg]
-#[include config_backup.cfg]
+[include config_backup.cfg]
 [include timelapse.cfg]
 [include stridemax_board.cfg]
 [include stridemax_steppers.cfg]
 [include KAMP_Settings.cfg]
 # [include Exclude_Object.cfg]
+[include v4lctls.cfg]
 [include Start_Stop.cfg]
-# [include Macro.cfg]
+[include Macro.cfg]
 [include Speed.cfg]
 [display_status]
 [exclude_object]
@@ -36,11 +37,11 @@ enable_force_move: true
 [printer]
 kinematics: corexy
 max_velocity: 1000
-max_accel: 14400
+max_accel: 10000
 #max_accel_to_decel: 6500
 max_z_velocity: 50
 max_z_accel: 300
-square_corner_velocity: 15
+square_corner_velocity: 10
 
 ########################
 ########################
@@ -84,7 +85,7 @@ position_min: -5
 full_steps_per_rotation: 200
 homing_retract_dist: 0.0  #5.0    # beacon needs this to be set to 0
 homing_positive_dir: false
-homing_speed: 20.0
+homing_speed: 20
 second_homing_speed: 2.5
 
 #  Motor 3
@@ -119,28 +120,28 @@ y_offset: 27.065 # update with offset from nozzle on your machine
 mesh_main_direction: x
 mesh_runs: 2
 
-home_xy_position: 160, 100 #165, 155 #40 # update with your safe position
+home_xy_position: 160, 240 #165, 155 #40 # update with your safe position
 home_z_hop: 5
-home_z_hop_speed: 30
+home_z_hop_speed: 20
 home_xy_move_speed:1000
 
-home_method: contact #proximity
+home_method: proximity
 home_method_when_homed: proximity
-home_autocalibrate: unhomed #never
+home_autocalibrate: never #unhomed #never
 
-autocal_speed: 3 
+autocal_speed: 3
 autocal_accel: 100
 autocal_retract_dist: 2
 autocal_retract_speed: 15
 autocal_tolerance: 0.008
 autocal_sample_count: 2
-autocal_max_retries: 5
+autocal_max_retries: 3
 
 
 
 ##############################    bed Level  #####
 [bed_mesh]
-speed: 600
+speed: 1000
 horizontal_move_z: 15
 mesh_min: 10, 35
 mesh_max: 320, 300
@@ -220,7 +221,7 @@ max_temp: 500
 #   Motor 6
 [tmc2209 extruder]
 uart_pin: PG10
-interpolate: false
+interpolate: true
 run_current: 0.7
 sense_resistor: 0.110
 
@@ -333,7 +334,7 @@ result_folder: ~/printer_data/config/ShakeTune_results
 number_of_results_to_keep: 3
 #    The number of results to keep in the result_folder. The oldest results will
 #    be automatically deleted after each runs.
-keep_raw_csv: False
+keep_raw_data: False
 #    If True, the raw CSV files will be kept in the result_folder alongside the
 #    PNG graphs. If False, they will be deleted and only the graphs will be kept.
 show_macros_in_webui: True
@@ -347,6 +348,9 @@ retract_length: 0.3
 retract_speed: 85
 unretract_speed: 85
 
+[skew_correction]
+
+[include moonraker_obico_macros.cfg]
 #*# <---------------------- SAVE_CONFIG ---------------------->
 #*# DO NOT EDIT THIS BLOCK OR BELOW. The contents are auto-generated.
 #*#
@@ -413,9 +417,9 @@ unretract_speed: 85
 #*#
 #*# [input_shaper]
 #*# shaper_type_x = mzv
-#*# shaper_freq_x = 89.0
-#*# shaper_type_y = 2hump_ei
-#*# shaper_freq_y = 83.0
+#*# shaper_freq_x = 97.4
+#*# shaper_type_y = mzv
+#*# shaper_freq_y = 81.2
 #*#
 #*# [extruder]
 #*# control = pid
@@ -430,22 +434,27 @@ unretract_speed: 85
 #*# pid_kd = 372.852
 #*#
 #*# [beacon model default]
-#*# model_coef = 1.6611129248711516,
-#*# 	  2.061169514600325,
-#*# 	  0.8321489941604848,
-#*# 	  0.19986959819531808,
-#*# 	  -0.06447357808985701,
-#*# 	  0.1675617108989899,
-#*# 	  0.1529757180559552,
-#*# 	  -0.11784672732996564,
-#*# 	  0.016792677557127923,
-#*# 	  0.092583830195298
-#*# model_domain = 1.8710757102379918e-07,1.9289414614788145e-07
+#*# model_coef = 1.6515668700887327,
+#*# 	2.05031570126386,
+#*# 	0.8300247211067793,
+#*# 	0.24433743221111226,
+#*# 	-0.03885845801060527,
+#*# 	-0.043209740264566095,
+#*# 	0.10997245560386366,
+#*# 	0.23631444064234222,
+#*# 	0.04723152798861425,
+#*# 	-0.08453038132478441
+#*# model_domain = 1.8698278282041497e-07,1.928713310808812e-07
 #*# model_range = 0.200000,5.000000
-#*# model_temp = 22.262165
+#*# model_temp = 23.662432
 #*# model_offset = 0.00000
 #*#
 #*# [axis_twist_compensation]
-#*# z_compensations = 0.030591, -0.002127, -0.028465
+#*# z_compensations = 0.059758, -0.007654, -0.052104
 #*# compensation_start_x = 20.0
 #*# compensation_end_x = 310.0
+#*#
+#*# [skew_correction my_skew_profile]
+#*# xy_skew = 0.0007050054233613512
+#*# xz_skew = 0.0
+#*# yz_skew = 0.0
